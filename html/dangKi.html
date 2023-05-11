@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Kí Tài Khoản</title>
+    <link rel="stylesheet" href="../css/dang-ki.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand:wght@500&family=Tilt+Neon&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section>
+      <div class="background">
+      </div>
+      <div class="content">
+        <div class="title items">
+          <h1>Đăng Kí</h1>
+          <h6>
+            <a href="../html/index.html">Trang chủ</a> / Đăng kí tài khoản
+          </h6>
+        </div>
+        <form>
+          <label for="username">User Name</label>
+          <input
+            id="account"
+            type="text"
+            name="User Name"
+            placeholder="abc123"
+            onblur="validate(value, id, name)"
+          />
+          <div><span class="text-account"></span></div>
+          <label for="phone__number">Số Điện Thoại</label>
+          <br />
+          <input
+            id="phone__number"
+            type="text"
+            name="Số Điện Thoại"
+            placeholder="0123456789"
+            onblur="validate(value, id, name)"
+          />
+          <div>
+            <span class="text-phone__number"></span>
+          </div>
+          <label for="email">Email</label>
+          <br />
+          <input
+            id="email"
+            type="email"
+            name="Email"
+            placeholder="Email"
+            onblur="validate(value, id, name)"
+          />
+          <div><span class="text-email"></span></div>
+          <label for="password">Mật Khẩu</label>
+          <br />
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Abc123"
+            onblur="validate(value, id, name)"
+          />
+          <div><span class="text-password"></span></div>
+          <label for="resut-password">Nhập Lại Mật Khẩu</label>
+          <br />
+          <input
+            id="resut-password"
+            type="password"
+            name="resut-password"
+            placeholder="Abc123"
+            onblur="validate(value, id, name)"
+          />
+          <div><span class="text-resut-password"></span></div>
+          <button id="create" type="submit" onclick="getvalue()">Đăng Kí</button>
+        </form>
+        <div class="line">
+          <div></div>
+        </div>
+        <div class="log__in">
+          <div>
+            <a href="./dangnhap.html">Đăng Nhập</a>
+          </div>
+          <div>
+            <a href="./index.html">Trang Chủ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+        const validate = (value, id, name) => {
+    const textError = document.getElementsByClassName("text-" + id)[0];
+    const getPattern = (id) => {
+      let pattern;
+      id === "password"
+        ? (pattern = /^[a-zA-Z0-9][^(!@#$%^&*()_)]{5,16}$/)
+        : id === "account"
+        ? (pattern = /^[a-z0-9]{5,20}$/)
+        : id === "phone__number"
+        ? (pattern = /^(01\d{9})|(09\d{8})$/)
+        : id === "email"
+        ? (pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        : id === "password"
+        ? (pattern = /^[a-zA-Z0-9][^(!@#$%^&*()_)]{5,16}$/)
+        : "";
+      return pattern;
+    };
+    id === "resut-password"
+      ? document.getElementById("password").value === value
+        ? ""
+        : (textError.innerHTML = "Nhập Lại Password Không Đúng !")
+      : "";
+    value === ""
+      ? (textError.innerHTML = "Vui lòng nhập trường này !")
+      : getPattern(id).test(value.trim()) === true
+      ? (textError.innerHTML = "")
+      : (textError.innerHTML = "Trường này phải là " + name + " !");
+  };
+  
+    </script>
+  </body>
+</html>
